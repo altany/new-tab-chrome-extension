@@ -2,7 +2,11 @@
     "name": "The New App Launcher",
     "description": "Launches apps, the good way!",
     "version": "0.0.0.1",
-    "permissions" : ["management"],
+    "content_scripts": [{
+		"js": ["jquery-2.2.0.min.js", "newtab.js"],
+		"matches": ["<all_urls>"]
+	}],
+	"permissions" : ["storage", "management"],
     "chrome_url_overrides" : {
         "newtab": "newtab.html"
     },
