@@ -3,7 +3,7 @@
     "description": "Launches apps, the good way!",
     "version": "0.0.0.1",
     "content_scripts": [{
-		"js": ["jquery-2.2.0.min.js", "newtab.js"],
+		"js": ["jquery-2.2.0.min.js", "jquery-ui.min.js", "newtab.js"],
 		"matches": ["<all_urls>"]
 	}],
 	"permissions" : ["storage", "management"],

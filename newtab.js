@@ -1,50 +1,73 @@
 $(document).ready(function() {
 	var storage = chrome.storage.sync;
 	
-	console.log(storage);
+	$( '#addLinkModal' ).dialog({
+    	autoOpen: false,
+    	show: {
+    		effect: 'blind',
+    		duration: 500
+    	},
+    	hide: {
+        	effect: 'blind',
+        	duration: 500
+    	}
+    });
+	
+	$('#addLink').click(function(){
+		$( '#addLinkModal' ).dialog( 'open' );
+	});
+	
+	chrome.storage.sync.get(null, function(items) {
+		var allKeys = Object.keys(items);
+		console.log(items);
+		allKeys.forEach(function (id, index){
+			if (id == 'counter') {return;}
+			var bookmark = items[id];
+			addLink(id, bookmark.url, bookmark.title);
+		});
+	});
+	
+	storage.get('counter', function(data) {
+		var counter = 10000;
+		if (typeof data['counter'] === 'undefined'){
+			storage.set({'counter' : counter}, function() {});
+		}
+		else {
+			counter = data['counter'];
+		}
+		
+		storage.set({'counter' : counter}, function() {});
+		
+		$('#addLinkModal a').click(function(e){
+			e.preventDefault();
+			var details = {
+				title : $('#addLinkModal #title').val(),
+				url : $('#addLinkModal #url').val()
+			};
+			
+			var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+			if ($('#addLinkModal #title').val()=='') {
+				alert("Please enter a title for your bookmark");
+				return false;
+			}
+			else if (!re.test(details.url)) { 
+				alert("Please enter a valid URL");
+				return false;
+			}
+			counter++;
+			var bookmark = {};
+			bookmark[counter] = details;
+			storage.set(bookmark, function() {});
+			$( '#addLinkModal' ).dialog( 'close' );
+			addLink(counter, details.url, details.title);
+		});
+		
+	});
+	
 	
 	
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-	chrome.management.getAll(getAllCallback);
-});
-
-var getAllCallback = function(list) {
-	var apps = document.getElementById("apps");
-	for(var i in list) {
-	  // we don't want to do anything with extensions yet.
-	  var extInf = list[i];
-	  if(extInf.isApp && extInf.enabled) {
-		var app = document.createElement("div");
-
-		var img = new Image();
-		img.className = "image";
-		img.src = find128Image(extInf.icons);
-		img.addEventListener("click", (function(ext) {
-		  return function() {
-			chrome.management.launchApp(ext.id);
-		  };
-		})(extInf));
-
-		var name = document.createElement("div");
-		name.className = "name";
-		name.textContent = extInf.name;
-
-		app.className = "app";
-		app.appendChild(img);
-		app.appendChild(name);
-		apps.appendChild(app);
-	  }
-	}
-};
-
-var find128Image = function(icons) {
-for(var icon in icons) {
-  if(icons[icon].size == "128") {
-	return icons[icon].url;
-  }
-}
-
-return "/noicon.png";
+var addLink = function(id, url, title) {
+	$('#linkList').append('<div id="id-' + id + '"><a href="' + url + '" target="_blank">' + title + '</a></div>');
 };

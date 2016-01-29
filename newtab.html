@@ -1,10 +1,24 @@
 <html>
 	<head>
 		<title>My new tab page</title>
+		<link rel="stylesheet" href="style.css"></link>
 		<script src='./jquery-2.2.0.min.js'></script>
+		<script src='./jquery-ui.min.js'></script>
 		<script src="newtab.js"></script>
 	</head>
 	<body>
+		
+		<div id="linkList"></div>
+		<a id="addLink" href="#" title="Click to add a new bookmark">+</a>
+		<div id="addLinkModal" title="Add a new shortcut">
+			<label for="title">Website Name</label>
+			<input type="text" id="title" name="title">
+			<label for="url">Website URL</label>
+			<input type="text" id="url" name="url">
+			<a href="#">Add</a>
+		</div>
+		
+		
 		<div id="apps">
 
 		</div>
