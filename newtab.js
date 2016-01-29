@@ -29,10 +29,7 @@ $(document).ready(function() {
 	
 	storage.get('counter', function(data) {
 		var counter = 10000;
-		if (typeof data['counter'] === 'undefined'){
-			storage.set({'counter' : counter}, function() {});
-		}
-		else {
+		if (typeof data['counter'] !== 'undefined'){
 			counter = data['counter'];
 		}
 		
@@ -60,6 +57,7 @@ $(document).ready(function() {
 			storage.set(bookmark, function() {});
 			$( '#addLinkModal' ).dialog( 'close' );
 			addLink(counter, details.url, details.title);
+			storage.set({'counter' : counter}, function() {});
 		});
 		
 	});
