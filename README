@@ -1,1 +1,5 @@
-Will try to build an extension that ovverwrites Chrome's new tab page
+I am creating a Chrome Extension that replaces the new tab page.
+
+It allows the user to add bookmarks to any website.
+
+I am using chrome.storage.sync to save the added bookmarks so they should sync with Chrome.
