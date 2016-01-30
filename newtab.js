@@ -56,6 +56,7 @@ $(document).ready(function() {
 			bookmark[counter] = details;
 			storage.set(bookmark, function() {});
 			$( '#addLinkModal' ).dialog( 'close' );
+			$('#addLinkModal input').val('');
 			addLink(counter, details.url, details.title);
 			storage.set({'counter' : counter}, function() {});
 		});
