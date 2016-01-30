@@ -1,20 +1,15 @@
 $(document).ready(function() {
 	var storage = chrome.storage.sync;
 	
-	$( '#addLinkModal' ).dialog({
-    	autoOpen: false,
-    	show: {
-    		effect: 'blind',
-    		duration: 500
-    	},
-    	hide: {
-        	effect: 'blind',
-        	duration: 500
-    	}
-    });
+	$( '#addLinkModal' ).hide();
 	
 	$('#addLink').click(function(){
-		$( '#addLinkModal' ).dialog( 'open' );
+		$( '#addLinkModal' ).show();
+	});
+	
+	$('#addLinkModal span').click(function(){
+		$('#addLinkModal input').val('');
+		$( '#addLinkModal' ).hide();
 	});
 	
 	chrome.storage.sync.get(null, function(items) {
@@ -55,15 +50,13 @@ $(document).ready(function() {
 			var bookmark = {};
 			bookmark[counter] = details;
 			storage.set(bookmark, function() {});
-			$( '#addLinkModal' ).dialog( 'close' );
+			$( '#addLinkModal' ).hide();
 			$('#addLinkModal input').val('');
 			addLink(counter, details.url, details.title);
 			storage.set({'counter' : counter}, function() {});
 		});
 		
 	});
-	
-	
 	
 });
 

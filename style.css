@@ -36,31 +36,56 @@ body {
 	text-decoration: none;
 }
 
-.ui-dialog .ui-button-text{
-	display: none;
+#addLinkModal {
+	width: 300px;
+	position: fixed;
+	top: 100px;
+	right: 10px;
+	z-index:100;
+	border-radius: 5px;
+	background-color: cornsilk;
+	border: 1px solid lightcoral;
 }
-
-.ui-dialog-title {
-	width: calc(100% - 32px);
-	display: inline-block;
-	vertical-align: top;
+#addLinkModal div {
 	font-weight: bold;
 	line-height: 22px;
-	background-color: #cc99ff;
+	background-color: lightcoral;
 	color: white;
 	padding-left: 10px;
-	font-family: Arial;
-}
-.ui-dialog-titlebar-close{
-	display: inline-block;
-	padding: 0;
-	vertical-align: top;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
-.ui-icon-closethick {
-	background-image: url("https://code.jquery.com/ui/1.11.4/themes/smoothness/images/ui-icons_222222_256x240.png");
-	width: 18px;
-    height: 18px;
+#addLinkModal span {
+	float:right;
+	clear: right;
+	cursor: hand;
+	padding: 0 10px;
+}
+#addLinkModal label,
+#addLinkModal input {
+	display: inline-block;
+	margin: 10px 0 5px;
+}
+
+#addLinkModal label {
+	width: 80px;
+	margin-left: 10px;
+}
+
+#addLinkModal input {
+	
+}
+
+#addLinkModal a {
 	display: block;
-	background-position: -96px -128px;
+	width: 100px;
+	color: white;
+	font-weight: bold;
+	background-color: darkturquoise;
+	margin: 10px auto;
+	text-decoration: none;
+	text-align: center;
+	padding: 10px 0;
+	border-radius: 5px;
 }
