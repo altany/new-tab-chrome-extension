@@ -6,9 +6,17 @@
 		"js": ["jquery-2.2.0.min.js", "jquery-ui.min.js", "newtab.js"],
 		"matches": ["<all_urls>"]
 	}],
-	"permissions" : ["storage", "management"],
+	"permissions" : ["storage", "management", "activeTab"],
     "chrome_url_overrides" : {
         "newtab": "newtab.html"
+    },
+    "browser_action": {
+        "default_icon": {
+            "19": "images/chrome.png",
+            "38": "images/chrome.png" 
+        },
+        "default_title": "Add a new bookmark",
+        "default_popup": "popup.html" 
     },
 	"manifest_version": 2
 }
