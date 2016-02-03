@@ -39,11 +39,11 @@ $(document).ready(function() {
 			
 			var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
 			if ($('#addLinkModal #title').val()=='') {
-				alert("Please enter a title for your bookmark");
+				alert('Please enter a title for your bookmark');
 				return false;
 			}
 			else if (!re.test(details.url)) { 
-				alert("Please enter a valid URL");
+				alert('Please enter a valid URL');
 				return false;
 			}
 			counter++;
@@ -61,13 +61,26 @@ $(document).ready(function() {
 });
 
 var addLink = function(id, url, title) {
-	$('#linkList').append('<div id="id-' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>');
-    $( ".draggable" ).draggable({
-        containment: "parent"
-        , cursor: "move"
-        , revert: "valid"
+	$('#linkList').append('<div id="id-' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>'); // Draggables are also droppables so I need to revert when it's dropped on a droppable
+    $( '.draggable' ).draggable({
+        containment: 'parent'
+        , cursor: 'move'
+        , revert: function (valid) {
+            if (!valid) { //Dropped on non-droppable so it's safe to store the new location
+                console.log($(this).position().left,$(this).position().top);
+                
+                // Save new location here
+                // ....
+                
+                return false;
+            }
+            else { //Dropped on droppable which is another bookmark so revert
+                return true;
+            }
+           
+        }
     });
-     $( ".droppable" ).droppable({
-      tolerance: "touch"
+     $( '.droppable' ).droppable({
+        tolerance: 'touch'
     });
 };
