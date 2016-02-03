@@ -3,5 +3,11 @@
     console.log('need to add this to chrome.storage');
 });*/
 
-// Not logging anything (why?)
-console.log('popup.js loaded');
+function init() {
+    $('body').css('background-image', 'none');
+    console.log('popup.js loaded');
+    
+} 
+
+
+document.addEventListener('DOMContentLoaded', init);
