@@ -11,7 +11,7 @@ $(document).ready(function() {
 		$('#addLinkModal input').val('');
 		$( '#addLinkModal' ).hide();
 	});
-	
+    
 	chrome.storage.sync.get(null, function(items) {
 		var allKeys = Object.keys(items);
 		console.log(items);
@@ -61,5 +61,13 @@ $(document).ready(function() {
 });
 
 var addLink = function(id, url, title) {
-	$('#linkList').append('<div id="id-' + id + '"><a href="' + url + '" target="_blank">' + title + '</a></div>');
+	$('#linkList').append('<div id="id-' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>');
+    $( ".draggable" ).draggable({
+        containment: "parent"
+        , cursor: "move"
+        , revert: "valid"
+    });
+     $( ".droppable" ).droppable({
+      tolerance: "touch"
+    });
 };

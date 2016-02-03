@@ -20,6 +20,10 @@ body {
 	right: 10px;
 }
 
+#linkList {
+    height: 95%;
+    width: 90%;
+}
 #linkList div {
 	color: white;
 	background-color: darkturquoise;
