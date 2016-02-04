@@ -4,10 +4,15 @@
 });*/
 
 function init() {
-    $('body').css('background-image', 'none');
     console.log('popup.js loaded');
+    
+} 
+
+function add() {
+    console.log('add button clickeds');
     
 } 
 
 
 document.addEventListener('DOMContentLoaded', init);
+document.getElementById('addSite').addEventListener('click', add);

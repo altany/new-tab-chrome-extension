@@ -6,7 +6,7 @@
 		"js": [
             "jquery-2.2.0.min.js"
             , "jquery-ui.min.js"
-            , "newtab.js","popup.js"
+            , "newtab.js"
         ],
 		"matches": ["<all_urls>"]
 	},
@@ -16,15 +16,13 @@
             //, "jquery-ui.min.js"
             ,"popup.js"
         ],
-		"matches": ["<all_urls>"],
-        "run_at": "document_end"
+		"matches": ["<all_urls>"]
 	}],
 	"permissions" : [
         "storage"
         , "management"
         , "tabs"
-        , "activeTab"
-       // , "<all_urls>"
+        , "<all_urls>"
         , "contextMenus"
     ],
     "chrome_url_overrides" : {
