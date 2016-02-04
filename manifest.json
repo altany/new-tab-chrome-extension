@@ -9,14 +9,6 @@
             , "newtab.js"
         ],
 		"matches": ["*://*.google.com/_/chrome/newtab*"]
-	},
-    {
-		"js": [
-            "jquery-2.2.0.min.js"
-            //, "jquery-ui.min.js"
-            ,"popup.js"
-        ],
-		"matches": ["<all_urls>"]
 	}],
 	"permissions" : [
         "storage"
@@ -37,6 +29,10 @@
         },*/
         "default_title": "Add a new bookmark",
         "default_popup": "popup.html" 
+    },
+	"background": {
+        "scripts": ["jquery-2.2.0.min.js"],
+        "persistent": false
     },
 	"manifest_version": 2
 }
