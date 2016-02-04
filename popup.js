@@ -1,31 +1,22 @@
-// Called when the user clicks on the browser action.
-/*chrome.browserAction.onClicked.addListener(function(tab) {
-    console.log('need to add this to chrome.storage');
-});*/
 
-function init() {
+/*function init() {
 	console.log('popup.js loaded');   
-} 
+} */
 
 function add() {
     chrome.storage.sync.get('counter', function(data) {
-		
+		var counter = 10000;
 		if (typeof data['counter'] !== 'undefined'){
 			counter = data['counter'];
 		}
-		
 		chrome.storage.sync.set({'counter' : counter}, function() {});
 		
-		chrome.tabs.executeScript({
-			code: 'var counter = ' + data['counter']
-			}, function() {
-			chrome.tabs.executeScript({file: 'tab.js'});
-		});
+		console.log(counter, document.location.href);
 	}); 
 	
 	
 } 
 
 
-document.addEventListener('DOMContentLoaded', init);
+//document.addEventListener('DOMContentLoaded', init);
 document.getElementById('addSite').addEventListener('click', add);
