@@ -12,27 +12,30 @@ function add() {
 		}
 		chrome.storage.sync.set({'counter' : counter}, function() {});
 		
-		console.log(counter, document.location.href, $('#title'));
-		var details = {
-			title : $('#title').val(),
-			url : document.location.href
-		};
+		chrome.tabs.getSelected(null,function(tab) {
+			var details = {
+				title : $('#title').val(),
+				url : tab.url
+			};
 
-		if (details.title=='') {
-			alert('Please enter a title for your bookmark');
-			return false;
-		}
-		counter++;		
+			if (details.title=='') {
+				alert('Please enter a title for your bookmark');
+				return false;
+			}
+			counter++;		
 
-		addLink(counter, details.url, details.title);
+			addLink(counter, details.url, details.title);
 
-		details.position = $('#id-'+counter).position();
-		var bookmark = {};
-		bookmark[counter] = details;
-		console.log(bookmark);
-		chrome.storage.sync.set(bookmark, function() {});
+			details.position = $('#id-'+counter).position();
+			var bookmark = {};
+			bookmark[counter] = details;
+			console.log(bookmark);
+			chrome.storage.sync.set(bookmark, function() {});
 
-		chrome.storage.sync.set({'counter' : counter}, function() {});
+			chrome.storage.sync.set({'counter' : counter}, function() {});
+		});
+		
+		
 	}); 
 	
 	
