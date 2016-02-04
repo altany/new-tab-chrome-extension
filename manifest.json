@@ -8,7 +8,7 @@
             , "jquery-ui.min.js"
             , "newtab.js"
         ],
-		"matches": ["<all_urls>"]
+		"matches": ["*://*.google.com/_/chrome/newtab*"]
 	},
     {
 		"js": [
