@@ -14,7 +14,7 @@ function add() {
 			counter = data['counter'];
 		}
 		
-		storage.set({'counter' : counter}, function() {});
+		chrome.storage.sync.set({'counter' : counter}, function() {});
 		
 		chrome.tabs.executeScript({
 			code: 'var counter = ' + data['counter']
