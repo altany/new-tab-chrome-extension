@@ -9,8 +9,9 @@ function init() {
 } 
 
 function add() {
-    console.log('add button clickeds');
-    
+    chrome.tabs.executeScript({
+        file: 'tab.js'
+    }); 
 } 
 
 
