@@ -4,14 +4,26 @@
 });*/
 
 function init() {
-    console.log('popup.js loaded');
-    
+	console.log('popup.js loaded');   
 } 
 
 function add() {
-    chrome.tabs.executeScript({
-        file: 'tab.js'
-    }); 
+    chrome.storage.sync.get('counter', function(data) {
+		
+		if (typeof data['counter'] !== 'undefined'){
+			counter = data['counter'];
+		}
+		
+		storage.set({'counter' : counter}, function() {});
+		
+		chrome.tabs.executeScript({
+			code: 'var counter = ' + data['counter']
+			}, function() {
+			chrome.tabs.executeScript({file: 'tab.js'});
+		});
+	}); 
+	
+	
 } 
 
 

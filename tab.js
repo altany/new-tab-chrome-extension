@@ -1,6 +1,6 @@
-alert('clicked');
+alert(counter);
 
-storage.get('counter', function(data) {
+/* storage.get('counter', function(data) {
     var counter = 10000;
     if (typeof data['counter'] !== 'undefined'){
         counter = data['counter'];
@@ -58,7 +58,7 @@ var addLink = function(id, url, title, position) {
                 console.log({'left': $(this).position().left, 'top' : $(this).position().top});
                 bookmark[id] = details;
                 
-                /* Not updating the right entry */
+                // Not updating the right entry 
                 storage.set(bookmark, function() {});
                 
                 return false;
@@ -74,4 +74,4 @@ var addLink = function(id, url, title, position) {
     });
     
     return 'id-' + id;
-};
+}; */
