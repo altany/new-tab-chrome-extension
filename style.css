@@ -23,6 +23,7 @@ body {
 #linkList {
     height: 95%;
     width: 90%;
+    position: relative;
 }
 #linkList div {
 	color: white;
@@ -32,6 +33,7 @@ body {
 	padding: 10px;
 	border-radius: 16px;
 	text-align: center;
+    position: absolute;
 }
 
 #linkList div a{

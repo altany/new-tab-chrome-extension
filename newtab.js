@@ -14,11 +14,11 @@ $(document).ready(function() {
     
 	chrome.storage.sync.get(null, function(items) {
 		var allKeys = Object.keys(items);
-		console.log(items);
+        console.log(items);
 		allKeys.forEach(function (id, index){
 			if (id == 'counter') {return;}
 			var bookmark = items[id];
-			addLink(id, bookmark.url, bookmark.title);
+            addLink(id, bookmark.url, bookmark.title, bookmark.position);
 		});
 	});
 	
@@ -46,13 +46,19 @@ $(document).ready(function() {
 				alert('Please enter a valid URL');
 				return false;
 			}
-			counter++;
-			var bookmark = {};
-			bookmark[counter] = details;
-			storage.set(bookmark, function() {});
+			counter++;		
+			            
+            addLink(counter, details.url, details.title);
+            
+            details.position = $('#id-'+counter).position();
+            var bookmark = {};
+            bookmark[counter] = details;
+            console.log(bookmark);
+            storage.set(bookmark, function() {});
+            
 			$( '#addLinkModal' ).hide();
 			$('#addLinkModal input').val('');
-			addLink(counter, details.url, details.title);
+			
 			storage.set({'counter' : counter}, function() {});
 		});
 		
@@ -60,17 +66,32 @@ $(document).ready(function() {
 	
 });
 
-var addLink = function(id, url, title) {
-	$('#linkList').append('<div id="id-' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>'); // Draggables are also droppables so I need to revert when it's dropped on a droppable
+var addLink = function(id, url, title, position) {
+    console.log('adding link', id, title);
+    // Draggables are also droppables so I need to revert when it's dropped on a droppable
+	$('#linkList').append('<div id="id-' + id + '" data-id="' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>');
+    if (typeof position !== "undefined") {
+        $('#id-' + id).css({'top': position.top, 'left': position.left}); 
+    }
     $( '.draggable' ).draggable({
         containment: 'parent'
         , cursor: 'move'
         , revert: function (valid) {
             if (!valid) { //Dropped on non-droppable so it's safe to store the new location
-                console.log($(this).position().left,$(this).position().top);
+                var storage = chrome.storage.sync;
                 
                 // Save new location here
-                // ....
+                var bookmark = {};
+                var details = {
+                    title : title,
+                    url : url,
+                    position : {'left': $(this).position().left, 'top' : $(this).position().top}
+                };
+                console.log({'left': $(this).position().left, 'top' : $(this).position().top});
+                bookmark[id] = details;
+                
+                /* Not updating the right entry */
+                storage.set(bookmark, function() {});
                 
                 return false;
             }
@@ -83,4 +104,6 @@ var addLink = function(id, url, title) {
      $( '.droppable' ).droppable({
         tolerance: 'touch'
     });
+    
+    return 'id-' + id;
 };
