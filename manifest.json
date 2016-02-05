@@ -1,7 +1,7 @@
 {
     "name": "New Tab Widget",
     "description": "Customise the new tab",
-    "version": "0.0.0.2",
+    "version": "0.0.1.0",
     "content_scripts": [{
 		"js": [
             "jquery-2.2.0.min.js"
@@ -20,8 +20,7 @@
     "chrome_url_overrides" : {
         "newtab": "newtab.html"
     },
-	"background_page" : "background.html",
-    "browser_action": {
+	"browser_action": {
         "default_icon":"images/heart-icon.png",
 		
         /*"default_icon": {
@@ -32,8 +31,11 @@
         "default_popup": "popup.html" 
     },
 	"background": {
-        "scripts": ["jquery-2.2.0.min.js"],
+        "scripts": ["jquery-2.2.0.min.js", "background.js"],
         "persistent": false
     },
+	"icons": {
+	"16": "images/heart-icon.png"
+	},
 	"manifest_version": 2
 }
