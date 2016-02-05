@@ -1,15 +1,48 @@
 <!doctype html>
 <html>
     <head>
-        <title>Set Page Color Popup</title>
-        <style</style>
-        <script src="popup.js"></script>
+        <title>Add a new page to your favourites</title>
+        <script src='./jquery-2.2.0.min.js'></script>
+        <style>
+        .popup {
+            width: 180px;
+			padding: 0;
+			margin: 0;
+        }
+        .popup  a{
+            display: block;
+            color: white;
+            background-color: #a44cc3;
+            width: 60px;
+            margin: 10px auto;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: bold;
+            text-decoration: none;			
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			font-size: 17px;
+			line-height: 17px;
+			position: absolute;
+			top: -6px;
+			right: 5px;
+        }
+        .popup  input{
+            padding: 5px;
+			display: inline-block;
+			font-size: 17px;
+			color: dimgray;
+			border:none;
+        }
+		.popup  input:focus{
+			outline:none;
+		}
+        </style>
     </head>
-    <body>
-        <div>Add this page as a bookmark to your new tab page</div>
-
-        <label for="title">Website Name</label>
-        <input type="text" id="title" name="title">
-        <a href="#">Add</a>
+    <body class="popup">
+       <input type="text" id="title" name="title" placeholder="Title">
+        <a href="#" id="addSite">+</a>
+        <script src="popup.js"></script>
     </body>
 </html>
