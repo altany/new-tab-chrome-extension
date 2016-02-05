@@ -2,4 +2,4 @@ I am creating a Chrome Extension that replaces the new tab page.
 
 It allows the user to add bookmarks to any website.
 
-I am using chrome.storage.sync to save the added bookmarks so they should sync with Chrome.
+This can be done manually through the new tab page or via a toolbar icon from the actual page
