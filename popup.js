@@ -33,6 +33,7 @@ function add() {
 			chrome.storage.sync.set(bookmark, function() {});
 
 			chrome.storage.sync.set({'counter' : counter}, function() {});
+			self.close();
 		});
 		
 		
