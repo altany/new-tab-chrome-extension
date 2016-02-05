@@ -14,8 +14,7 @@ $(document).ready(function() {
     
 	chrome.storage.sync.get(null, function(items) {
 		var allKeys = Object.keys(items);
-        console.log(items);
-		allKeys.forEach(function (id, index){
+        allKeys.forEach(function (id, index){
 			if (id == 'counter') {return;}
 			var bookmark = items[id];
             addLink(id, bookmark.url, bookmark.title, bookmark.position);
@@ -53,7 +52,6 @@ $(document).ready(function() {
             details.position = $('#id-'+counter).position();
             var bookmark = {};
             bookmark[counter] = details;
-            console.log(bookmark);
             storage.set(bookmark, function() {});
             
 			$( '#addLinkModal' ).hide();
@@ -87,18 +85,17 @@ var addLink = function(id, url, title, position) {
             if (!valid) { //Dropped on non-droppable so it's safe to store the new location
                 var storage = chrome.storage.sync;
 				
-				var elemId = $(this).data('id');
-                var elemTitle = $(this).data('title');
+				var elemId = $(this).data('id');				
 				
                 // Save new location here
                 var bookmark = {};
                 var details = {
-                    title : elemTitle,
-                    url : url,
+                    title : $(this).data('title'),
+                    url : $(this).find('a').attr('href'),
                     position : {'left': $(this).position().left, 'top' : $(this).position().top}
                 };
                 bookmark[elemId] = details;
-                
+                console.log();
 				$('#id-' + elemId)
 					.attr('data-top', details.position.top)
 					.attr('data-left', details.position.left);
