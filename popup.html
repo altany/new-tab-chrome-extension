@@ -6,30 +6,43 @@
         <style>
         .popup {
             width: 180px;
-            background-color: #e5ccff;
+			padding: 0;
+			margin: 0;
         }
         .popup  a{
             display: block;
             color: white;
-            background-color: darkturquoise;
+            background-color: #a44cc3;
             width: 60px;
             margin: 10px auto;
-            padding: 10px;
-            border-radius: 8px;
+            border-radius: 20px;
             text-align: center;
             font-weight: bold;
-            text-decoration: none;
+            text-decoration: none;			
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			font-size: 17px;
+			line-height: 17px;
+			position: absolute;
+			top: -6px;
+			right: 5px;
         }
         .popup  input{
             padding: 5px;
+			display: inline-block;
+			font-size: 17px;
+			color: dimgray;
+			border:none;
         }
+		.popup  input:focus{
+			outline:none;
+		}
         </style>
     </head>
     <body class="popup">
-        <h3>Add this page to favourites</h3>
-
-       <input type="text" id="title" name="title" placeholder="Type a title">
-        <a href="#" id="addSite">Add</a>
+       <input type="text" id="title" name="title" placeholder="Title">
+        <a href="#" id="addSite">+</a>
         <script src="popup.js"></script>
     </body>
 </html>
