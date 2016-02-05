@@ -97,9 +97,12 @@ var addLink = function(id, url, title, position) {
                     url : url,
                     position : {'left': $(this).position().left, 'top' : $(this).position().top}
                 };
-                console.log($(this), elemTitle, elemId, {'left': $(this).position().left, 'top' : $(this).position().top});
                 bookmark[elemId] = details;
                 
+				$('#id-' + elemId)
+					.attr('data-top', details.position.top)
+					.attr('data-left', details.position.left);
+				
                 /* Not updating the right entry */
                 storage.set(bookmark, function() {});
                 
