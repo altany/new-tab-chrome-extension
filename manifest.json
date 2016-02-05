@@ -20,6 +20,7 @@
     "chrome_url_overrides" : {
         "newtab": "newtab.html"
     },
+	"background_page" : "background.html",
     "browser_action": {
         "default_icon":"images/heart-icon.png",
 		
