@@ -67,28 +67,38 @@ $(document).ready(function() {
 });
 
 var addLink = function(id, url, title, position) {
-    console.log('adding link', id, title);
     // Draggables are also droppables so I need to revert when it's dropped on a droppable
 	$('#linkList').append('<div id="id-' + id + '" data-id="' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>');
-    if (typeof position !== "undefined") {
-        $('#id-' + id).css({'top': position.top, 'left': position.left}); 
+	
+	if (typeof position === "undefined") {
+        position = {'top': 0, 'left': 0}; 
     }
+	
+	$('#id-' + id)
+		.css({'top': position.top, 'left': position.left})
+		.attr('data-top', position.top)
+		.attr('data-left', position.left)
+		.data('title', title); 
+    
     $( '.draggable' ).draggable({
         containment: 'parent'
         , cursor: 'move'
         , revert: function (valid) {
             if (!valid) { //Dropped on non-droppable so it's safe to store the new location
                 var storage = chrome.storage.sync;
-                
+				
+				var elemId = $(this).data('id');
+                var elemTitle = $(this).data('title');
+				
                 // Save new location here
                 var bookmark = {};
                 var details = {
-                    title : title,
+                    title : elemTitle,
                     url : url,
                     position : {'left': $(this).position().left, 'top' : $(this).position().top}
                 };
-                console.log({'left': $(this).position().left, 'top' : $(this).position().top});
-                bookmark[id] = details;
+                console.log($(this), elemTitle, elemId, {'left': $(this).position().left, 'top' : $(this).position().top});
+                bookmark[elemId] = details;
                 
                 /* Not updating the right entry */
                 storage.set(bookmark, function() {});
