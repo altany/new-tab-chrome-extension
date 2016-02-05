@@ -3,13 +3,32 @@
     <head>
         <title>Set Page Color Popup</title>
         <script src='./jquery-2.2.0.min.js'></script>
-        
+        <style>
+        .popup {
+            width: 180px;
+            background-color: #e5ccff;
+        }
+        .popup  a{
+            display: block;
+            color: white;
+            background-color: darkturquoise;
+            width: 60px;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .popup  input{
+            padding: 5px;
+        }
+        </style>
     </head>
-    <body>
-        <div>Add this page as a bookmark to your new tab page</div>
+    <body class="popup">
+        <h3>Add this page to favourites</h3>
 
-        <label for="title">Website Name</label>
-        <input type="text" id="title" name="title">
+       <input type="text" id="title" name="title" placeholder="Type a title">
         <a href="#" id="addSite">Add</a>
         <script src="popup.js"></script>
     </body>

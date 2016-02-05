@@ -14,7 +14,7 @@ function add() {
 		
 		chrome.tabs.getSelected(null,function(tab) {
 			var details = {
-				title : $('#title').val(),
+				title : $('.popup #title').val(),
 				url : tab.url
 			};
 
