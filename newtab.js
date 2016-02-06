@@ -100,7 +100,7 @@ var addLink = function(id, url, title, position, image) {
                     url : $(this).find('a').attr('href'),
 					position : {'left': $(this).position().left, 'top' : $(this).position().top}
                 };
-				if ($(this).hasClass('hasImage')) {
+				if ($(this).hasClass('hasIcon')) {
 					details.image = $(this).css('background-image').replace('url(','').replace(')','');
 				}
                 bookmark[elemId] = details;
