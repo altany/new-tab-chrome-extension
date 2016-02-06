@@ -14,10 +14,11 @@ $(document).ready(function() {
     
 	chrome.storage.sync.get(null, function(items) {
 		var allKeys = Object.keys(items);
+		console.log(items);
         allKeys.forEach(function (id, index){
 			if (id == 'counter') {return;}
 			var bookmark = items[id];
-            addLink(id, bookmark.url, bookmark.title, bookmark.position);
+            addLink(id, bookmark.url, bookmark.title, bookmark.position, bookmark.image);
 		});
 	});
 	
@@ -64,12 +65,17 @@ $(document).ready(function() {
 	
 });
 
-var addLink = function(id, url, title, position) {
+var addLink = function(id, url, title, position, image) {
     // Draggables are also droppables so I need to revert when it's dropped on a droppable
 	$('#linkList').append('<div id="id-' + id + '" data-id="' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>');
 	
 	if (typeof position === "undefined") {
         position = {'top': 0, 'left': 0}; 
+    }
+	if (typeof image !== "undefined") {
+        $('#id-' + id)
+			.addClass('hasIcon')
+			.css({'background-image': 'url(' + image +')'});
     }
 	
 	$('#id-' + id)
@@ -92,8 +98,11 @@ var addLink = function(id, url, title, position) {
                 var details = {
                     title : $(this).data('title'),
                     url : $(this).find('a').attr('href'),
-                    position : {'left': $(this).position().left, 'top' : $(this).position().top}
+					position : {'left': $(this).position().left, 'top' : $(this).position().top}
                 };
+				if ($(this).hasClass('hasImage')) {
+					details.image = $(this).css('background-image').replace('url(','').replace(')','');
+				}
                 bookmark[elemId] = details;
                 console.log();
 				$('#id-' + elemId)

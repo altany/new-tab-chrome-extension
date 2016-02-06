@@ -2,8 +2,6 @@ function init() {
 	
 	document.getElementById('addSite').addEventListener('click', add);
 	chrome.tabs.getSelected(null,function(tab) {
-		console.log(tab);
-			
 		$('.popup #title').val(tab.title).select();
 	});
 }
@@ -19,7 +17,8 @@ function add() {
 		chrome.tabs.getSelected(null,function(tab) {
 			var details = {
 				title : $('.popup #title').val(),
-				url : tab.url
+				url : tab.url,
+				image : tab.favIconUrl
 			};
 
 			if (details.title=='') {
