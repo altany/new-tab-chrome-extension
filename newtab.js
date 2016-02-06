@@ -18,7 +18,7 @@ $(document).ready(function() {
         allKeys.forEach(function (id, index){
 			if (id == 'counter') {return;}
 			var bookmark = items[id];
-            addLink(id, bookmark.url, bookmark.title, bookmark.position, bookmark.image);
+            addLink(id, bookmark.url, bookmark.title, bookmark.image, bookmark.position);
 		});
 	});
 	
@@ -34,7 +34,8 @@ $(document).ready(function() {
 			e.preventDefault();
 			var details = {
 				title : $('#addLinkModal #title').val(),
-				url : $('#addLinkModal #url').val()
+				url : $('#addLinkModal #url').val(),
+				image: 'http://www.google.com/s2/favicons?domain_url=' + $('#addLinkModal #url').val()
 			};
 			
 			var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
@@ -48,7 +49,7 @@ $(document).ready(function() {
 			}
 			counter++;		
 			            
-            addLink(counter, details.url, details.title);
+            addLink(counter, details.url, details.title, details.image);
             
             details.position = $('#id-'+counter).position();
             var bookmark = {};
@@ -65,7 +66,7 @@ $(document).ready(function() {
 	
 });
 
-var addLink = function(id, url, title, position, image) {
+var addLink = function(id, url, title, image, position ) {
     // Draggables are also droppables so I need to revert when it's dropped on a droppable
 	$('#linkList').append('<div id="id-' + id + '" data-id="' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>');
 	
