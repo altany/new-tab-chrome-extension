@@ -2,7 +2,9 @@ function init() {
 	
 	document.getElementById('addSite').addEventListener('click', add);
 	chrome.tabs.getSelected(null,function(tab) {
-		$('.popup #title').val(tab.url).select();
+		console.log(tab);
+			
+		$('.popup #title').val(tab.title).select();
 	});
 }
 
