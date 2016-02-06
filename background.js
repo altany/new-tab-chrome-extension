@@ -1,3 +1,7 @@
+function onClickHandler (info, tab) {
+	alert(info.linkUrl);
+}
+
 // Set up context menu at install time.
 chrome.runtime.onInstalled.addListener(function() {
 	var context = "link";
@@ -5,14 +9,11 @@ chrome.runtime.onInstalled.addListener(function() {
 	var id = chrome.contextMenus.create({
 		"title": title
 		, "contexts":[context]
-		, "id": "context" + context
+		//, "documentUrlPatterns": ["*://*.google.com/_/chrome/newtab*"]
+		, "id": "context-" + context
 	});  
+	
+	// add click event
+	chrome.contextMenus.onClicked.addListener(onClickHandler);
 });
 
-// add click event
-/*chrome.contextMenus.onClicked.addListener(onClickHandler);
-
-// The onClicked callback function.
-function onClickHandler(info) {
-	console.log(info);
-};*/
