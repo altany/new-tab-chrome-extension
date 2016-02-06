@@ -1,5 +1,5 @@
 function onClickHandler (info, tab) {
-	alert(info.linkUrl);
+	alert(JSON.stringify(info));
 }
 
 // Set up context menu at install time.
