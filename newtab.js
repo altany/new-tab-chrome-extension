@@ -6,6 +6,8 @@ $(document).ready(function() {
 	$('#addLink').click(function(){
 		if (!$(this).hasClass('inactive')) {
 			$('#addLinkModal input').val('');
+			$('#addLinkModal div').html('Add a new bookmark');
+			$('#addLinkModal a').html('Add');
 			$( '#addLinkModal' ).show();
 		}
 	});
@@ -45,6 +47,8 @@ $(document).ready(function() {
 			console.log(data[editId]);
 			$('#addLinkModal #title').val(data[editId].title);
 			$('#addLinkModal #url').val(data[editId].url);
+			$('#addLinkModal div').html('Edit the bookmark');
+			$('#addLinkModal a').html('Save');
 			$( '#addLinkModal' ).show();
 		});
 	});
