@@ -122,7 +122,7 @@ body {
 	display: block;
 }
 
-#addLinkModal {
+.modal {
 	width: 300px;
 	position: fixed;
 	top: 10px;
@@ -132,7 +132,7 @@ body {
 	background-color: cornsilk;
 	border: 1px solid lightcoral;
 }
-#addLinkModal div {
+.modal div {
 	font-weight: bold;
 	line-height: 22px;
 	background-color: lightcoral;
@@ -142,25 +142,25 @@ body {
 	border-top-right-radius: 5px;
 }
 
-#addLinkModal span {
+.modal span {
 	position: absolute;
     top: 5px;
     right: 5px;
 	color: white;
 	cursor: pointer;
 }
-#addLinkModal label,
-#addLinkModal input {
+.modal label,
+.modal input {
 	display: inline-block;
 	margin: 10px 0 5px;
 }
 
-#addLinkModal label {
+.modal label {
 	width: 80px;
 	margin-left: 10px;
 }
 
-#addLinkModal a {
+.modal a {
 	display: block;
 	width: 100px;
 	color: white;

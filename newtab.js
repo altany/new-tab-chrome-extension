@@ -1,10 +1,12 @@
 $(document).ready(function() {
 	var storage = chrome.storage.sync;
 	
-	$( '#addLinkModal' ).hide();
+	$( '.modal' ).hide();
 	
 	$('#addLink').click(function(){
 		if (!$(this).hasClass('inactive')) {
+			$('.modal').hide()
+			$('.modal').attr('id', 'addLinkModal');
 			$('#addLinkModal input').val('');
 			$('#addLinkModal div').html('Add a new bookmark');
 			$('#addLinkModal a').html('Add');
@@ -13,6 +15,7 @@ $(document).ready(function() {
 	});
 	
 	$('#editLinks').click(function(){
+		$('.modal').hide();
 		$('#linkList > div').toggleClass('editable').removeClass('selected');
 		$('#editElem').hide();
 		$('#addLink').toggleClass('inactive');
@@ -44,18 +47,35 @@ $(document).ready(function() {
 	$('#editElem .icon-pencil2').click(function(){
 		var editId = $(this).parent().data('id');
 		storage.get(editId.toString(), function(data) {
-			console.log(data[editId]);
-			$('#addLinkModal #title').val(data[editId].title);
-			$('#addLinkModal #url').val(data[editId].url);
-			$('#addLinkModal div').html('Edit the bookmark');
-			$('#addLinkModal a').html('Save');
-			$( '#addLinkModal' ).show();
+			$('.modal').attr('id', 'editLinkModal');
+			$('#editLinkModal #title').val(data[editId].title);
+			$('#editLinkModal #url').val(data[editId].url);
+			$('#editLinkModal div').html('Edit the bookmark');
+			$('#editLinkModal a').html('Save');
+			$( '#editLinkModal' ).show();
 		});
 	});
-	
-	$('#addLinkModal span').click(function(){
-		$('#addLinkModal input').val('');
-		$( '#addLinkModal' ).hide();
+// Save new location here
+/*                var bookmark = {};
+                var details = {
+                    title : $(this).data('title'),
+                    url : $(this).find('a').attr('href'),
+					position : {'left': $(this).position().left, 'top' : $(this).position().top}
+                };
+				if ($(this).hasClass('hasIcon')) {
+					details.image = $(this).css('background-image').replace('url(','').replace(')','');
+				}
+                bookmark[elemId] = details;
+                console.log();
+				$('#id-' + elemId)
+					.attr('data-top', details.position.top)
+					.attr('data-left', details.position.left);
+				
+                
+                storage.set(bookmark, function() {});*/	
+	$('.modal span').click(function(){
+		$('.modal input').val('');
+		$( '.modal' ).hide();
 	});
     
 	chrome.storage.sync.get(null, function(items) {
@@ -156,7 +176,6 @@ var addLink = function(id, url, title, image, position ) {
 					.attr('data-top', details.position.top)
 					.attr('data-left', details.position.left);
 				
-                /* Not updating the right entry */
                 storage.set(bookmark, function() {});
                 
                 return false;
