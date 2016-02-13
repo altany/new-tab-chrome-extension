@@ -4,17 +4,29 @@ $(document).ready(function() {
 	$( '#addLinkModal' ).hide();
 	
 	$('#addLink').click(function(){
-		$( '#addLinkModal' ).show();
+		if (!$(this).hasClass('inactive')) {
+			$( '#addLinkModal' ).show();
+		}
 	});
 	
 	$('#editLinks').click(function(){
-		$('#linkList > div').toggleClass('editable');
+		$('#linkList > div').toggleClass('editable').removeClass('selected');
+		$('#editElem').hide();
+		$('#addLink').toggleClass('inactive');
 		$(this).find('.icon').toggleClass('icon-pencil, icon-checkmark');
 	});
 	
 
 	$('#linkList').on('click', '.editable', function (e) {
-	  e.preventDefault();
+		$('#editElem').hide();
+		e.preventDefault();
+		var bookmark = $(this);
+		$('#linkList > div').removeClass('selected');
+		bookmark.addClass('selected');
+		$('#editElem')
+			.css('top', bookmark.offset().top)
+			.css('left', (bookmark.offset().left + bookmark.width() + 40));
+		$('#editElem').show('slide', {direction: 'left'}, 200);
 	});
 
 	$('#addLinkModal span').click(function(){
