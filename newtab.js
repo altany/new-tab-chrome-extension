@@ -7,6 +7,16 @@ $(document).ready(function() {
 		$( '#addLinkModal' ).show();
 	});
 	
+	$('#editLinks').click(function(){
+		$('#linkList > div').toggleClass('editable');
+		$(this).find('.icon').toggleClass('icon-pencil, icon-checkmark');
+	});
+	
+
+	$('#linkList').on('click', '.editable', function (e) {
+	  e.preventDefault();
+	});
+
 	$('#addLinkModal span').click(function(){
 		$('#addLinkModal input').val('');
 		$( '#addLinkModal' ).hide();

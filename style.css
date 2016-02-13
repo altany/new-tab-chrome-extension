@@ -2,9 +2,9 @@
 @font-face {
     font-family: 'icomoon';
     src:
-        url('fonts/icomoon.ttf?rudh42') format('truetype'),
-        url('fonts/icomoon.woff?rudh42') format('woff'),
-        url('fonts/icomoon.svg?rudh42#icomoon') format('svg');
+        url('fonts/icomoon.ttf?sm36jf') format('truetype'),
+        url('fonts/icomoon.woff?sm36jf') format('woff'),
+        url('fonts/icomoon.svg?sm36jf#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -39,6 +39,10 @@
 .icon-cross:before {
     content: "\e904";
 }
+.icon-checkmark:before {
+    content: "\e905";
+}
+
 
 
 /*** Main styles ***/
@@ -70,7 +74,7 @@ body {
 }
 
 #editLinks {
-	top: 90px;
+	top: 75px;
 }
 
 #linkList {
@@ -92,6 +96,10 @@ body {
 	background-position: 3px center;
     background-repeat: no-repeat;
 	background-size: 30px;
+}
+
+#linkList .editable {
+	opacity: 0.7;
 }
 
 #linkList div a{
