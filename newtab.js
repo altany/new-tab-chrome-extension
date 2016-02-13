@@ -5,6 +5,7 @@ $(document).ready(function() {
 	
 	$('#addLink').click(function(){
 		if (!$(this).hasClass('inactive')) {
+			$('#addLinkModal input').val('');
 			$( '#addLinkModal' ).show();
 		}
 	});
@@ -25,10 +26,20 @@ $(document).ready(function() {
 		bookmark.addClass('selected');
 		$('#editElem')
 			.css('top', bookmark.offset().top)
-			.css('left', (bookmark.offset().left + bookmark.width() + 40));
+			.css('left', (bookmark.offset().left + bookmark.width() + 40))
+			.data('id', bookmark.data('id'));
 		$('#editElem').show('slide', {direction: 'left'}, 200);
 	});
+	
+	$('#editElem .icon-cross').click(function(){
+		var deleteId = $(this).parent().data('id');
+		chrome.storage.sync.remove(deleteId.toString(), function(){
+			$('#editElem').hide();
+			$('#id-' + deleteId).remove();
+		});
+	});
 
+	
 	$('#addLinkModal span').click(function(){
 		$('#addLinkModal input').val('');
 		$( '#addLinkModal' ).hide();
