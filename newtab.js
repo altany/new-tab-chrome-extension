@@ -38,7 +38,16 @@ $(document).ready(function() {
 			$('#id-' + deleteId).remove();
 		});
 	});
-
+	
+	$('#editElem .icon-pencil2').click(function(){
+		var editId = $(this).parent().data('id');
+		storage.get(editId.toString(), function(data) {
+			console.log(data[editId]);
+			$('#addLinkModal #title').val(data[editId].title);
+			$('#addLinkModal #url').val(data[editId].url);
+			$( '#addLinkModal' ).show();
+		});
+	});
 	
 	$('#addLinkModal span').click(function(){
 		$('#addLinkModal input').val('');
