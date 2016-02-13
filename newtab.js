@@ -38,7 +38,7 @@ $(document).ready(function() {
 	
 	$('#editElem .icon-cross').click(function(){
 		var deleteId = $(this).parent().data('id');
-		chrome.storage.sync.remove(deleteId.toString(), function(){
+		storage.remove(deleteId.toString(), function(){
 			$('#editElem').hide();
 			$('#id-' + deleteId).remove();
 		});
@@ -55,30 +55,13 @@ $(document).ready(function() {
 			$( '#editLinkModal' ).show();
 		});
 	});
-// Save new location here
-/*                var bookmark = {};
-                var details = {
-                    title : $(this).data('title'),
-                    url : $(this).find('a').attr('href'),
-					position : {'left': $(this).position().left, 'top' : $(this).position().top}
-                };
-				if ($(this).hasClass('hasIcon')) {
-					details.image = $(this).css('background-image').replace('url(','').replace(')','');
-				}
-                bookmark[elemId] = details;
-                console.log();
-				$('#id-' + elemId)
-					.attr('data-top', details.position.top)
-					.attr('data-left', details.position.left);
-				
-                
-                storage.set(bookmark, function() {});*/	
+
 	$('.modal span').click(function(){
 		$('.modal input').val('');
 		$( '.modal' ).hide();
 	});
     
-	chrome.storage.sync.get(null, function(items) {
+	storage.get(null, function(items) {
 		var allKeys = Object.keys(items);
 		console.log(items);
         allKeys.forEach(function (id, index){
@@ -96,16 +79,17 @@ $(document).ready(function() {
 		
 		storage.set({'counter' : counter}, function() {});
 		
-		$('#addLinkModal a').click(function(e){
+		$('.modal a').click(function(e){
 			e.preventDefault();
 			var details = {
-				title : $('#addLinkModal #title').val(),
-				url : $('#addLinkModal #url').val(),
-				image: 'http://www.google.com/s2/favicons?domain_url=' + $('#addLinkModal #url').val()
+				title : $('.modal #title').val(),
+				url : $('.modal #url').val()
 			};
+			details.image = 'http://www.google.com/s2/favicons?domain_url=' + details.url;
 			
+			var id;
 			var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
-			if ($('#addLinkModal #title').val()=='') {
+			if ($('.modal #title').val()=='') {
 				alert('Please enter a title for your bookmark');
 				return false;
 			}
@@ -113,17 +97,30 @@ $(document).ready(function() {
 				alert('Please enter a valid URL');
 				return false;
 			}
-			counter++;		
-			            
-            addLink(counter, details.url, details.title, details.image);
+			
+			if ($('.modal').attr('id') == 'addLinkModal') {
+				id = ++counter;
+				addLink(counter, details.url, details.title, details.image);
+			}
+			else if ($('.modal').attr('id') == 'editLinkModal') {
+				id = $('#editElem').data('id');
+			}
+			
             
-            details.position = $('#id-'+counter).position();
+            details.position = $('#id-'+id).position();
             var bookmark = {};
-            bookmark[counter] = details;
+            bookmark[id] = details;
             storage.set(bookmark, function() {});
-            
-			$( '#addLinkModal' ).hide();
-			$('#addLinkModal input').val('');
+			
+			if ($('.modal').attr('id') == 'editLinkModal') {
+				$('#id-'+id).css('background-image', 'url(' + details.image +')');
+				$('#id-'+id+' a')
+					.attr('href', details.url)
+					.text(details.title);
+			}
+			
+			$( '.modal' ).hide();
+			$('.modal input').val('');
 			
 			storage.set({'counter' : counter}, function() {});
 		});
