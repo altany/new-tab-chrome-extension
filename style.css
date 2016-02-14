@@ -56,6 +56,19 @@ body {
     );	
 }
 
+#instructions {
+	text-align: center;
+	font-size: 14px;
+}
+
+error {
+	color: red;
+}
+
+#instructions div:nth-of-type(2) {
+	display:none;
+}
+
 .setting {
 	font-size: 20px;
 	color: white;
@@ -132,7 +145,13 @@ body {
 	background-color: cornsilk;
 	border: 1px solid lightcoral;
 }
-.modal div {
+
+.modal error {
+	display: none;
+	margin: 10px;
+}
+
+.modal header {
 	font-weight: bold;
 	line-height: 22px;
 	background-color: lightcoral;

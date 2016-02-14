@@ -5,19 +5,20 @@ $(document).ready(function() {
 	
 	$('#addLink').click(function(){
 		if (!$(this).hasClass('inactive')) {
-			$('.modal').hide()
+			$('.modal, .modal error').hide()
 			$('.modal').attr('id', 'addLinkModal');
 			$('#addLinkModal input').val('');
-			$('#addLinkModal div').html('Add a new bookmark');
+			$('#addLinkModal header').html('Add a new bookmark');
 			$('#addLinkModal a').html('Add');
 			$( '#addLinkModal' ).show();
 		}
 	});
 	
 	$('#editLinks').click(function(){
-		$('.modal').hide();
+		$('.modal, .modal error').hide();
 		$('#linkList > div').toggleClass('editable').removeClass('selected');
 		$('#editElem').hide();
+		$('#instructions div').toggle();
 		$('#addLink').toggleClass('inactive');
 		$(this).find('.icon').toggleClass('icon-pencil, icon-checkmark');
 	});
@@ -50,7 +51,7 @@ $(document).ready(function() {
 			$('.modal').attr('id', 'editLinkModal');
 			$('#editLinkModal #title').val(data[editId].title);
 			$('#editLinkModal #url').val(data[editId].url);
-			$('#editLinkModal div').html('Edit the bookmark');
+			$('#editLinkModal header').html('Edit the bookmark');
 			$('#editLinkModal a').html('Save');
 			$( '#editLinkModal' ).show();
 		});
@@ -90,11 +91,11 @@ $(document).ready(function() {
 			var id;
 			var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
 			if ($('.modal #title').val()=='') {
-				alert('Please enter a title for your bookmark');
+				$('.modal error').html('Please enter a title for your bookmark').css('display','block'); 
 				return false;
 			}
 			else if (!re.test(details.url)) { 
-				alert('Please enter a valid URL');
+				$('.modal error').html('Please enter a valid URL').css('display','block'); 
 				return false;
 			}
 			
