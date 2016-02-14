@@ -50,23 +50,34 @@
 
 
 body {
+	margin-top: 0;
 	background-image:linear-gradient(
       to top right, 
       lightcoral, #ffffcc
     );	
 }
 
-#instructions {
-	text-align: center;
-	font-size: 14px;
-}
 
 error {
 	color: red;
 }
 
-#instructions div:nth-of-type(2) {
-	display:none;
+#instructions {
+	text-align: center;
+	font-size: 14px;
+	margin: 20px;
+}
+
+#instructions label {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+#instructions label:nth-of-type(2) {
+	display: none;
+	/*border: 1px solid blue;*/
+	background-color: #9898e6;
+	color: #fafafa;
 }
 
 .setting {
@@ -94,16 +105,16 @@ error {
 }
 
 #linkList {
-    height: 95%;
+    height: 90%;
     width: 90%;
     position: relative;
 }
 #linkList div {
 	color: white;
-	background-color: darkturquoise;
+	background-color: FloralWhite;
 	margin: 10px 0;
 	padding: 0;
-	border-radius: 16px;
+	border-radius: 10px;
     position: absolute;
 	border: 2px solid transparent;
 }
@@ -127,7 +138,7 @@ error {
 }
 
 #linkList div a{
-	color: white;
+	color: cadetblue;
 	font-weight: bold;
 	text-decoration: none;
 	padding: 13px;

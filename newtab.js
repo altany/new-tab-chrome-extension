@@ -18,7 +18,7 @@ $(document).ready(function() {
 		$('.modal, .modal error').hide();
 		$('#linkList > div').toggleClass('editable').removeClass('selected');
 		$('#editElem').hide();
-		$('#instructions div').toggle();
+		$('#instructions label').toggle();
 		$('#addLink').toggleClass('inactive');
 		$(this).find('.icon').toggleClass('icon-pencil, icon-checkmark');
 	});
