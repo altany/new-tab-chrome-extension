@@ -73,9 +73,16 @@ error {
 	border-radius: 10px;
 }
 
+#instructions label:first-of-type{
+	font-weight: bold;
+	color: darkslategray;
+	background-color:rgba(255,255,255,0.5);
+	box-shadow: 0 0 5px white;
+	border-radius: 10px;
+}
+
 #instructions label:nth-of-type(2) {
 	display: none;
-	/*border: 1px solid blue;*/
 	background-color: #9898e6;
 	color: #fafafa;
 }
@@ -128,6 +135,10 @@ error {
 
 #linkList .editable {
 	opacity: 0.7;
+}
+
+#linkList .editable:hover {
+	border-color: cadetblue;
 }
 #linkList .selected {
 	opacity: 1;
