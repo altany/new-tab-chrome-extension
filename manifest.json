@@ -8,14 +8,14 @@
             , "jquery-ui.min.js"
             , "newtab.js"
         ],
-		"matches": ["*://*.google.com/_/chrome/newtab*"]
+		"matches": ["*://*.google.com/_/chrome/newtab*"] /* matches Chrome's new tab url */
 	}],
 	"permissions" : [
         "storage"
         , "management"
         , "tabs"
         , "<all_urls>"
-        , "contextMenus"
+        /* , "contextMenus" */
     ],
     "chrome_url_overrides" : {
         "newtab": "newtab.html"

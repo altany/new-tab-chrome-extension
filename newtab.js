@@ -1,39 +1,84 @@
 $(document).ready(function() {
+	
+	// Storing the bookmarks and their configuration in Chrome storage
 	var storage = chrome.storage.sync;
 	
+	// Hiding the dialogue for adding/editing bookmarks
 	$( '.modal' ).hide();
 	
+	// The 'Add bookmark' button click handler
 	$('#addLink').click(function(){
+		
+		// Ignore if inactive, because e.g. in editing mode
 		if (!$(this).hasClass('inactive')) {
-			$('.modal, .modal error').hide()
-			$('.modal').attr('id', 'addLinkModal');
+			
+			/* Prep the form for adding a new bookmark */
+			
+			// 1. Clean the form from previously rendered/inserted data
+			$('.modal, .modal error').hide();
 			$('#addLinkModal input').val('');
+			
+			// 2. Set up the 'add' info
+			$('.modal').attr('id', 'addLinkModal');
 			$('#addLinkModal header').html('Add a new bookmark');
 			$('#addLinkModal a').html('Add');
+			
+			// Show the dialogue
 			$( '#addLinkModal' ).show();
 		}
 	});
 	
+	// The 'Edit bookmark' button click handler
 	$('#editLinks').click(function(){
+		
+		// Hide the dialoque (and any displayed errors)
 		$('.modal, .modal error').hide();
-		$('#linkList > div').toggleClass('editable').removeClass('selected');
+		
+		// Hide the bookmarks toolbar
 		$('#editElem').hide();
+		
+		/* Style the page to show that we are in and out of 'edit' mode */
+		
+		// 1. Toggle editable bookmark styling
+		$('#linkList > div').toggleClass('editable').removeClass('selected');
+		
+		// 2. Toggle header < - > instructions
 		$('#instructions label').toggle();
+		
+		// 3. (De)activate the 'Add bookmark' button
 		$('#addLink').toggleClass('inactive');
+		
+		// 4.Toggle the 'edit bookmark' button icon edit < - > done
 		$(this).find('.icon').toggleClass('icon-pencil, icon-checkmark');
 	});
 	
-
+	// When clicking on a bookmark in 'edit' mode
 	$('#linkList').on('click', '.editable', function (e) {
-		$('#editElem').hide();
+		
+		// Don't follow the link
 		e.preventDefault();
+		
+		// Hide the bookmarks toolbar
+		$('#editElem').hide();
+		
 		var bookmark = $(this);
+		
+		// 1. Deselect all bookmarks
 		$('#linkList > div').removeClass('selected');
+		
+		// 2. and style the clicked bookmark as selected
 		bookmark.addClass('selected');
+		
+		/* Set the toolbar */
 		$('#editElem')
+			// 1. Position the toolbar next to the clicked bookmark
 			.css('top', bookmark.offset().top)
 			.css('left', (bookmark.offset().left + bookmark.width() + 40))
+		
+			// 2. Add the selected bookmark's ID as data to the toolbar to bind it with its data
 			.data('id', bookmark.data('id'));
+		
+		// 3. Show the toolbar with animation
 		$('#editElem').show('slide', {direction: 'left'}, 200);
 	});
 	
