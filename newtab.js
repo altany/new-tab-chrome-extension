@@ -6,7 +6,22 @@ $(document).ready(function() {
 	// Hiding the dialogue for adding/editing bookmarks
 	$( '.modal' ).hide();
 	
-	// The 'Add bookmark' button click handler
+	/** Getting all the data from Chrome storage **/
+	storage.get(null, function(items) {
+		var allKeys = Object.keys(items);
+		console.log(items);
+		
+		// Loop through the data and render the bookmarks to the page
+        allKeys.forEach(function (id, index){
+			if (id == 'counter') {return;} // Ignore the counter data
+			var bookmark = items[id];
+			
+			// Render the bookmark
+            addLink(id, bookmark.url, bookmark.title, bookmark.image, bookmark.position);
+		});
+	});
+	
+	/** The 'Add bookmark' button click handler **/
 	$('#addLink').click(function(){
 		
 		// Ignore if inactive, because e.g. in editing mode
@@ -28,7 +43,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	// The 'Edit bookmark' button click handler
+	/** The 'Edit bookmark' button click handler **/
 	$('#editLinks').click(function(){
 		
 		// Hide the dialoque (and any displayed errors)
@@ -52,7 +67,7 @@ $(document).ready(function() {
 		$(this).find('.icon').toggleClass('icon-pencil, icon-checkmark');
 	});
 	
-	// When clicking on a bookmark in 'edit' mode
+	/** When clicking on a bookmark in 'edit' mode **/
 	$('#linkList').on('click', '.editable', function (e) {
 		
 		// Don't follow the link
@@ -82,41 +97,56 @@ $(document).ready(function() {
 		$('#editElem').show('slide', {direction: 'left'}, 200);
 	});
 	
+	/** Delete a bookmark **/
 	$('#editElem .icon-cross').click(function(){
+		
+		// Get the ID from the toolbar's data
 		var deleteId = $(this).parent().data('id');
+		
+		// Delete from Ghrome storage and remove from the page
 		storage.remove(deleteId.toString(), function(){
 			$('#editElem').hide();
 			$('#id-' + deleteId).remove();
 		});
 	});
 	
+	/** Edit a bookmark **/
 	$('#editElem .icon-pencil2').click(function(){
+		
+		// Get the ID from the toolbar's data
 		var editId = $(this).parent().data('id');
+		
+		// Get the bookmark's info from Chrome storage
 		storage.get(editId.toString(), function(data) {
-			$('.modal').attr('id', 'editLinkModal');
+			
+			/* Prep the dialogue to edit the bookmark */
+			
+			// 1. Populate the dialogue with the bookmark's stored info
 			$('#editLinkModal #title').val(data[editId].title);
 			$('#editLinkModal #url').val(data[editId].url);
+			
+			// 2. Set up the 'edit' info
+			$('.modal').attr('id', 'editLinkModal');
 			$('#editLinkModal header').html('Edit the bookmark');
 			$('#editLinkModal a').html('Save');
+			
+			// Show the dialogue
 			$( '#editLinkModal' ).show();
 		});
 	});
 
+	/** Clicking the modal's x button **/
 	$('.modal span').click(function(){
+		
+		// Clean the form
 		$('.modal input').val('');
+		
+		// Hide the dialogue
 		$( '.modal' ).hide();
 	});
     
-	storage.get(null, function(items) {
-		var allKeys = Object.keys(items);
-		console.log(items);
-        allKeys.forEach(function (id, index){
-			if (id == 'counter') {return;}
-			var bookmark = items[id];
-            addLink(id, bookmark.url, bookmark.title, bookmark.image, bookmark.position);
-		});
-	});
 	
+	/** Adding/Updating a bookmark **/
 	storage.get('counter', function(data) {
 		var counter = 10000;
 		if (typeof data['counter'] !== 'undefined'){
