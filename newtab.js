@@ -218,35 +218,50 @@ $(document).ready(function() {
 	
 });
 
+/**  adLink is the function that takes the bookmark info and renders it in the page **/
+
 var addLink = function(id, url, title, image, position ) {
-    // Draggables are also droppables so I need to revert when it's dropped on a droppable
-	$('#linkList').append('<div id="id-' + id + '" data-id="' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>');
 	
+	// Append a div to the list of bookmarks, adding useful attributes for positioning etc
+    $('#linkList').append(
+		'<div id="id-' + id + '" data-id="' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>'
+	);
+	
+	// If the position is not defined e.g. for a new bookmark, set to (0, 0)
 	if (typeof position === "undefined") {
         position = {'top': 0, 'left': 0}; 
     }
+	
+	// If a favicon was retrieved, add the background image and a class for styling
 	if (typeof image !== "undefined") {
         $('#id-' + id)
 			.addClass('hasIcon')
 			.css({'background-image': 'url(' + image +')'});
     }
 	
+	// Position the bookmark and add useful data
 	$('#id-' + id)
 		.css({'top': position.top, 'left': position.left})
 		.attr('data-top', position.top)
 		.attr('data-left', position.left)
 		.data('title', title); 
     
+	// Using Jquery UI draggable and droppable for the bookmark divs
     $( '.draggable' ).draggable({
+		
+		// Don't allow positioning outside the parent container
         containment: 'parent'
         , cursor: 'move'
+		
+		// Draggable divs are also droppable so I need to revert position when dropped on a droppable
         , revert: function (valid) {
+	
             if (!valid) { //Dropped on non-droppable so it's safe to store the new location
-                var storage = chrome.storage.sync;
-				
+                
+				// Get the element ID from the data
 				var elemId = $(this).data('id');				
 				
-                // Save new location here
+				/* Set up the new object to store in Chrome's storage, with the updated position */
                 var bookmark = {};
                 var details = {
                     title : $(this).data('title'),
@@ -257,13 +272,16 @@ var addLink = function(id, url, title, image, position ) {
 					details.image = $(this).css('background-image').replace('url(','').replace(')','');
 				}
                 bookmark[elemId] = details;
-                console.log();
+                
+				// Update the element's data with the new position
 				$('#id-' + elemId)
 					.attr('data-top', details.position.top)
 					.attr('data-left', details.position.left);
 				
-                storage.set(bookmark, function() {});
+				// Store the udpdated info in the storage
+                chrome.storage.sync.set(bookmark, function() {});
                 
+				// Don't revert
                 return false;
             }
             else { //Dropped on droppable which is another bookmark so revert
@@ -272,7 +290,9 @@ var addLink = function(id, url, title, image, position ) {
            
         }
     });
-     $( '.droppable' ).droppable({
+	
+	// Don't let the divs be on top of each other or touch
+    $( '.droppable' ).droppable({
         tolerance: 'touch'
     });
     
