@@ -1,5 +1,11 @@
-I am creating a Chrome Extension that replaces the new tab page.
+This is a Chrome extension that replaces the New Page tab.
 
-It allows the user to add bookmarks to any website.
+It adds a toolbar icon that allows the user to add any page as a bookmark (need to think of a better term as this is NOT the broser's bookmarks but only local to the extension).
 
-This can be done manually through the new tab page or via a toolbar icon from the actual page
+These bookmarks will appear in the new tab page, and can be modified and positioned by dragging and dropping. The bookmarks and their location is being stored in Chrome's storage so they should sync with the user's account.
+
+Additionally, the user can add bookmarks manually, providing a title and URL though the new tab page, by clicking the + button.
+
+In any case, the favicon of the page is being pulled automatically and is being displayed next to the bookmark title.
+
+When in edit mode (click the pencil icon) the user can edit or delete easily, by selecting the bookmark and clicking on the corresponding button in the popup toolbar.
