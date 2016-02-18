@@ -121,23 +121,23 @@ error {
     position: relative;
 }
 #linkList div {
-	color: white;
 	background-color: FloralWhite;
 	margin: 10px 0;
 	padding: 0;
 	border-radius: 10px;
     position: absolute;
-	border: 1px solid #b4b4e4;
+	/*border: 1px solid #b4b4e4;*/
+	box-shadow: 0 0 5px FloralWhite;
 }
 #linkList div:hover{
-	border-color: #a1a1dd;
+	background-color: white;
 }
 
 #linkList .hasIcon {
-	padding-left: 30px;
+	padding-left: 20px;
 	background-position: 6px center;
     background-repeat: no-repeat;
-	background-size: 30px;
+	background-size: 20px;
 }
 
 #linkList .editable {
@@ -156,7 +156,7 @@ error {
 }
 
 #linkList div a{
-	color: #141439;
+	color: dimgray;
 	text-decoration: none;
 	padding: 13px;
 	font-size: 15px;
@@ -229,6 +229,6 @@ error {
 	background-color: white;
     padding: 12px;
     border-radius: 18px;
-	color: #141439;
+	color: dimgray;/*#141439;*/
 	cursor: pointer;
 }
