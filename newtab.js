@@ -89,16 +89,29 @@ $(document).ready(function() {
 			details.image = 'http://www.google.com/s2/favicons?domain_url=' + details.url;
 			
 			var id;
+			
+			// Regular expression to match a URL
 			var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+			
+			/* Title is compulsory */
 			if ($('.modal #title').val()=='') {
 				$('.modal error').html('Please enter a title for your bookmark').css('display','block'); 
 				return false;
 			}
+			
+			/* Validate the URL */
 			else if (!re.test(details.url)) { 
 				$('.modal error').html('Please enter a valid URL').css('display','block'); 
 				return false;
 			}
 			
+			// If the URL has not http(s), add http at the beginning
+			re = /^(http[s]?:\/\/)/;
+			if (!re.test(details.url)) { 
+				details.url = 'http://' + details.url;
+			}
+					
+			/* Adding or editing? */
 			if ($('.modal').attr('id') == 'addLinkModal') {
 				id = ++counter;
 				addLink(counter, details.url, details.title, details.image);
