@@ -1,11 +1,16 @@
+/* Runs when clicking the toolbar icon */
 function init() {
 	
+	// Attach the event listener to the button
 	document.getElementById('addSite').addEventListener('click', add);
+	
+	// Get the title from the current tab and populate the text field, also select the whole text it to make it easier to edit
 	chrome.tabs.getSelected(null,function(tab) {
 		$('.popup #title').val(tab.title).select();
 	});
 }
 
+/* Saving a new bookmark from the toolbar popup */
 function add() {
     chrome.storage.sync.get('counter', function(data) {
 		var counter = 10000;

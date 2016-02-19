@@ -1,8 +1,12 @@
+<!-- The popup page tha shows when clicking the toolbar icon -->
+
 <!doctype html>
 <html>
     <head>
         <title>Add a new page to your favourites</title>
         <script src='./jquery-2.2.0.min.js'></script>
+		
+		<!-- Styling needs to be placed here as it won't work in a separate file -->
         <style>
         .popup {
             width: 350px;
@@ -41,6 +45,7 @@
 		}
         </style>
     </head>
+	
     <body class="popup">
        <input type="text" id="title" name="title" placeholder="Title" autofocus>
         <a href="#" id="addSite">+</a>

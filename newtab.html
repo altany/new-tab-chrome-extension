@@ -11,17 +11,31 @@
 			<label>Your bookmarks</label>
 			<label>Click on any bookmark to edit or delete and click <span class="icon icon-checkmark"></span> when you're done.</label>
 		</div>
+		
+		<!-- The bookmarks will be appended in this div -->
 		<div id="linkList"></div>
+		
+		<!-- The 'Add new bookmark' button -->
 		<a id="addLink" class="setting" title="Click to add a new bookmark">
 			<span class="icon icon-plus"></span>
 		</a>
+		
+		<!-- The 'Edit bookmarks' button, that toggles the 'edit mode' of the page -->
 		<a id="editLinks"  class="setting" title="Click to manage your bookmarks">
 			<span class="icon icon-pencil"></span>
 		</a>
+		
+		<!-- A toolbar that's hidden until an editable bookmark is selected -->
 		<div id="editElem">
+			
+			<!-- Edit the bookmark -->
 			<span class="icon icon-pencil2"></span>
+			
+			<!-- Delete the bookmark -->
 			<span class="icon icon-cross"></span>
 		</div>
+		
+		<!-- A popup that's displayed when adding a new bookmark or editing an existing one -->
 		<div class="modal">
 			<header></header>
 			<span class="icon icon-cross"></span>
