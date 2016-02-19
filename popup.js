@@ -4,6 +4,13 @@ function init() {
 	// Attach the event listener to the button
 	document.getElementById('addSite').addEventListener('click', add);
 	
+	// Also attach event listener when hitting enter
+	document.getElementById('popup').addEventListener('keypress', function (e){
+		if (e.keyCode == 13) {
+			add();
+  		}
+	});
+		
 	// Get the title from the current tab and populate the text field, also select the whole text it to make it easier to edit
 	chrome.tabs.getSelected(null,function(tab) {
 		$('.popup #title').val(tab.title).select();
