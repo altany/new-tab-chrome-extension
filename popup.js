@@ -43,7 +43,7 @@ function add() {
 			
 			// Title is compulsory
 			if (details.title=='') {
-				alert('Please enter a title for your bookmark');
+				$('error').css('display', 'block');
 				return false;
 			}
 			

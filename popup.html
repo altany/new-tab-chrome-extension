@@ -43,12 +43,19 @@
 		.popup  input:focus{
 			outline:none;
 		}
+		error {
+			display: none;
+			text-align: center;
+			color: red;
+			margin: 5px 0;
+		}		
         </style>
     </head>
 	
     <body class="popup">
        <input type="text" id="title" name="title" placeholder="Title" autofocus>
         <a href="#" id="addSite">+</a>
+		<error>Please enter a title for your bookmark</error>
         <script src="popup.js"></script>
     </body>
 </html>
