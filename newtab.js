@@ -224,7 +224,7 @@ var addLink = function(id, url, title, image, position ) {
 	
 	// Append a div to the list of bookmarks, adding useful attributes for positioning etc
     $('#linkList').append(
-		'<div id="id-' + id + '" data-id="' + id + '" class="draggable droppable"><a href="' + url + '" target="_blank">' + title + '</a></div>'
+		'<div id="id-' + id + '" data-id="' + id + '" class="draggable droppable"><a href="' + url + '">' + title + '</a></div>'
 	);
 	
 	// If the position is not defined e.g. for a new bookmark, set to (0, 0)
