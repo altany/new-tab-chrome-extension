@@ -54,7 +54,7 @@ body {
 	background-image:linear-gradient(
       to top right, 
       #ccccff, #FFeeFF
-    );	
+    );
 }
 
 
@@ -79,6 +79,10 @@ error {
 	background-color:rgba(255,255,255,0.5);
 	box-shadow: 0 0 5px white;
 	border-radius: 10px;
+	padding-left: 30px;
+	background-image: url(images/heart-iconx16.png);
+	background-repeat:  no-repeat;
+	background-position: 8px center;
 }
 
 #instructions label:nth-of-type(2) {
