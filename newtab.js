@@ -100,14 +100,20 @@ $(document).ready(function() {
 	/** Delete a bookmark **/
 	$('#editElem .icon-cross').click(function(){
 		
-		// Get the ID from the toolbar's data
-		var deleteId = $(this).parent().data('id');
 		
-		// Delete from Ghrome storage and remove from the page
-		storage.remove(deleteId.toString(), function(){
-			$('#editElem').hide();
-			$('#id-' + deleteId).remove();
-		});
+		var r = confirm("Are you sure you want to delete this bookmark?");
+		if (r == true) {
+			// Get the ID from the toolbar's data
+			var deleteId = $(this).parent().data('id');
+
+			// Delete from Ghrome storage and remove from the page
+			storage.remove(deleteId.toString(), function(){
+				$('#editElem').hide();
+				$('#id-' + deleteId).remove();
+			});
+		
+		}
+		
 	});
 	
 	/** Edit a bookmark **/
@@ -129,7 +135,6 @@ $(document).ready(function() {
 			// 2. Populate the dialogue with the bookmark's stored info
 			$('#editLinkModal #title').val(data[editId].title);
 			$('#editLinkModal #url').val(data[editId].url);
-			
 			
 			
 			// Show the dialogue
