@@ -121,14 +121,16 @@ $(document).ready(function() {
 			
 			/* Prep the dialogue to edit the bookmark */
 			
-			// 1. Populate the dialogue with the bookmark's stored info
-			$('#editLinkModal #title').val(data[editId].title);
-			$('#editLinkModal #url').val(data[editId].url);
-			
-			// 2. Set up the 'edit' info
+			// 1. Set up the 'edit' info
 			$('.modal').attr('id', 'editLinkModal');
 			$('#editLinkModal header').html('Edit the bookmark');
 			$('#editLinkModal a').html('Save');
+			
+			// 2. Populate the dialogue with the bookmark's stored info
+			$('#editLinkModal #title').val(data[editId].title);
+			$('#editLinkModal #url').val(data[editId].url);
+			
+			
 			
 			// Show the dialogue
 			$( '#editLinkModal' ).show();
