@@ -120,7 +120,7 @@ error {
 }
 
 #linkList {
-    height: 90%;
+    height: 85%;
     width: 90%;
     position: relative;
 }
@@ -233,4 +233,10 @@ error {
     border-radius: 18px;
 	color: dimgray;/*#141439;*/
 	cursor: pointer;
+}
+
+
+#createdBy {
+	float: right;
+	color: #8080ff;
 }

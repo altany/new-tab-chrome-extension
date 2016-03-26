@@ -1,5 +1,11 @@
 $(document).ready(function() {
 	
+	// Get current date and time
+	var now = new Date();
+	
+	// Populate the page's header with the current date and time
+	//$('#instructions label:first-of-type').html(now.toLocaleDateString('uk') + ' ' + now.toLocaleTimeString('uk'));
+	
 	// Storing the bookmarks and their configuration in Chrome storage
 	var storage = chrome.storage.sync;
 	
