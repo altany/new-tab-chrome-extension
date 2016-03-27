@@ -13,3 +13,9 @@ In any case, the favicon of the page is being pulled automatically and is being 
 When in edit mode (click the pencil icon) the user can edit or delete easily, by selecting the bookmark and clicking on the corresponding button in the popup toolbar.
 
 ## Check out "New Tab Widget" on [Chrome Web Store](https://chrome.google.com/webstore/detail/new-tab-widget/gbcgcbbbdifbebfkjeloioinmkimemlm)
+
+![Screenshot 1](https://raw.githubusercontent.com/altany/new-tab-chrome-extension/master/images/screenshots/marquee.PNG "Screenshot 1")
+
+![Screenshot 2](https://raw.githubusercontent.com/altany/new-tab-chrome-extension/master/images/screenshots/Capture4.PNG "Screenshot 2")
+
+![Screenshot 3](https://raw.githubusercontent.com/altany/new-tab-chrome-extension/master/images/screenshots/Capture3.PNG "Screenshot 3")
