@@ -1,4 +1,6 @@
-This is a Chrome extension that replaces the New Page tab.
+# New Tab Page Chrome Extension
+
+### This is a Chrome extension that replaces the New Page tab.
 
 It adds a toolbar icon that allows the user to add any page as a bookmark (need to think of a better term as this is NOT the broser's bookmarks but only local to the extension).
 
@@ -9,3 +11,5 @@ Additionally, the user can add bookmarks manually, providing a title and URL tho
 In any case, the favicon of the page is being pulled automatically and is being displayed next to the bookmark title.
 
 When in edit mode (click the pencil icon) the user can edit or delete easily, by selecting the bookmark and clicking on the corresponding button in the popup toolbar.
+
+## Check out "New Tab Widget" on [Chrome Web Store](https://chrome.google.com/webstore/detail/new-tab-widget/gbcgcbbbdifbebfkjeloioinmkimemlm)
