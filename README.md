@@ -2,9 +2,9 @@
 
 ### This is a Chrome extension that replaces the New Page tab.
 
-It adds a toolbar icon that allows the user to add any page as a bookmark (need to think of a better term as this is NOT the broser's bookmarks but only local to the extension).
+It adds a toolbar icon that allows the user to add any page as a bookmark (need to think of a better term as this is NOT the browser's bookmarks but only local to the extension).
 
-These bookmarks will appear in the new tab page, and can be modified and positioned by dragging and dropping. The bookmarks and their location is being stored in Chrome's storage so they should sync with the user's account.
+These bookmarks will appear in the new tab page, and can be modified and positioned by dragging and dropping. The bookmarks and their location is being stored in Chrome's storage so they are synced with the user's Google account.
 
 Additionally, the user can add bookmarks manually, providing a title and URL though the new tab page, by clicking the + button.
 
