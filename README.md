@@ -12,7 +12,7 @@ In any case, the favicon of the page is being pulled automatically and is being 
 
 When in edit mode (click the pencil icon) the user can edit or delete easily, by selecting the bookmark and clicking on the corresponding button in the popup toolbar.
 
-## Check out "New Tab Widget" on [Chrome Web Store](https://chrome.google.com/webstore/detail/new-tab-widget/gbcgcbbbdifbebfkjeloioinmkimemlm)
+Published on the Chrome Web Store as "New Tab Widget". It is a Manifest V2 extension, which Chrome stopped supporting in 2025, so it can no longer be installed.
 
 ![Screenshot 1](https://raw.githubusercontent.com/altany/new-tab-chrome-extension/master/images/screenshots/marquee.PNG "Screenshot 1")
 
